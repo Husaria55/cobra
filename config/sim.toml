@@ -1,0 +1,8 @@
+[mavlink]
+endpoint = "tcp:172.28.80.1:5770"
+system_id = 255
+component_id = 191
+telemetry_rate_hz = 0.5
+
+[logging]
+flights_directory = "cobra_flights"
