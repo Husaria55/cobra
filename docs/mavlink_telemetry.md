@@ -19,7 +19,8 @@ flowchart LR
 ```
 
 The default endpoint is `tcp:127.0.0.1:5762`, copied from Gepard's simulator
-profile. Gepard puts a MAVLink router in front of the simulator because one TCP
+profile. For mission planner SITL change the endpoint. 
+Gepard puts a MAVLink router in front of the simulator because one TCP
 server can serve several clients at the same time. This matters when Mission
 Planner and Cobra both need telemetry: two programs cannot safely compete for
 the same UDP listener unless a router duplicates the stream for them.
@@ -27,9 +28,11 @@ the same UDP listener unless a router duplicates the stream for them.
 Mission Planner is a ground-control application. Configure the SITL launcher,
 MAVProxy, or a MAVLink router to expose a dedicated TCP endpoint for Cobra,
 then put that address in `config/sim.toml`. Cobra currently accepts only the
-form `tcp:host:port`.
+form `tcp:host:port`. In mission planner run the simulation with `--serial2=tcp:5770:nowait`
+extra command. Then set the `endpoint = "tcp:172.28.80.1:5770"` (WSL version). 
+Change the host part for your setup.
 
-`mavlink.telemetry_rate_hz` controls Cobra's requested rate. It defaults to 2
+`mavlink.telemetry_rate_hz` controls Cobra's requested rate. It defaults to 0.5
 Hz, which produces a readable initial flight record without unnecessary traffic.
 Use a higher rate only when a later feature needs it.
 
